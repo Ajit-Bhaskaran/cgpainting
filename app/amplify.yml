@@ -4,22 +4,12 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "Installing dependencies..."
-        - npm ci --legacy-peer-deps
+        - echo "=== PREBUILD PHASE ==="
+        - chmod +x build.sh
     build:
       commands:
-        - echo "Building the application..."
-        - npm run build
-        - echo "Build completed. Current directory:"
-        - pwd
-        - echo "Contents of current directory:"
-        - ls -la
-        - echo "Contents of out directory:"
-        - ls -la out/
-        - echo "Copying files to root for deployment..."
-        - cp -r out/* .
-        - echo "Final contents of root directory:"
-        - ls -la
+        - echo "=== BUILD PHASE ==="
+        - ./build.sh
   artifacts:
     baseDirectory: .
     files:
