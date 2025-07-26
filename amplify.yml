@@ -5,8 +5,10 @@ frontend:
     preBuild:
       commands:
         - echo "=== PREBUILD PHASE START ==="
+        - echo "Node version:" && node --version
+        - echo "NPM version:" && npm --version
         - cd app
-        - npm install --legacy-peer-deps
+        - npm ci --legacy-peer-deps
         - echo "=== PREBUILD PHASE END ==="
     build:
       commands:
@@ -14,12 +16,6 @@ frontend:
         - cd app
         - npm run build
         - echo "=== BUILD PHASE END ==="
-        - echo "=== POST BUILD PHASE START ==="
-        - echo "Current working directory:"
-        - pwd
-        - echo "Current directory contents:"
-        - ls -la
-        - echo "=== POST BUILD PHASE END ==="
   artifacts:
     baseDirectory: app
     files:
@@ -28,3 +24,6 @@ frontend:
     paths:
       - app/node_modules/**/*
       - app/.next/cache/**/*
+  environment:
+    variables:
+      NODE_VERSION: '18.20.4'
