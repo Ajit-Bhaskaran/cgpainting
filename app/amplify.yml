@@ -4,12 +4,28 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "=== PREBUILD PHASE ==="
-        - chmod +x build.sh
+        - echo "=== PREBUILD PHASE START ==="
+        - npm ci --legacy-peer-deps
+        - echo "=== PREBUILD PHASE END ==="
     build:
       commands:
-        - echo "=== BUILD PHASE ==="
-        - ./build.sh
+        - echo "=== BUILD PHASE START ==="
+        - npm run build
+        - echo "=== BUILD PHASE END ==="
+        - echo "=== POST BUILD PHASE START ==="
+        - echo "Current working directory:"
+        - pwd
+        - echo "Current directory contents:"
+        - ls -la
+        - echo "Out directory contents:"
+        - ls -la out/
+        - echo "Copying files from out/ to root directory:"
+        - cp -r out/* .
+        - echo "Final directory contents:"
+        - ls -la
+        - echo "Verifying index.html exists:"
+        - ls -la index.html
+        - echo "=== POST BUILD PHASE END ==="
   artifacts:
     baseDirectory: .
     files:
