@@ -4,10 +4,14 @@ frontend:
   phases:
     preBuild:
       commands:
-        - yarn install --frozen-lockfile
+        - echo "Installing dependencies..."
+        - npm ci --legacy-peer-deps
     build:
       commands:
-        - yarn build
+        - echo "Building the application..."
+        - npm run build
+        - echo "Build completed. Contents of out directory:"
+        - ls -la out/
   artifacts:
     baseDirectory: out
     files:

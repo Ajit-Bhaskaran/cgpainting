@@ -1,13 +1,8 @@
-const path = require('path');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
   distDir: 'out',
-  experimental: {
-    outputFileTracingRoot: path.join(__dirname, '../'),
-  },
   eslint: {
     ignoreDuringBuilds: true,
   },
