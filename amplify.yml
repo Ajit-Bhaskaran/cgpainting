@@ -19,13 +19,19 @@ frontend:
         - pwd
         - echo "Current directory contents:"
         - ls -la
-        - echo "Checking if out directory exists:"
-        - ls -la out/ || echo "out/ not found, checking parent directory:"
-        - ls -la ../out/ || echo "out/ not found in parent either"
-        - echo "Looking for build files in current directory:"
-        - find . -name "*.html" -type f
-        - echo "Looking for build files in parent directory:"
-        - find .. -name "*.html" -type f
+        - echo "Checking for out directory:"
+        - ls -la out/ || echo "out/ not found in current directory"
+        - echo "Checking parent directory:"
+        - ls -la ../
+        - echo "Checking for out directory in parent:"
+        - ls -la ../out/ || echo "out/ not found in parent directory"
+        - echo "Searching for HTML files:"
+        - find . -name "*.html" -type f 2>/dev/null || echo "No HTML files found in current directory"
+        - find .. -name "*.html" -type f 2>/dev/null || echo "No HTML files found in parent directory"
+        - echo "Copying files from out/ to root (if out/ exists):"
+        - if [ -d "out" ]; then cp -r out/* ..; echo "Files copied from out/"; else echo "out/ directory not found"; fi
+        - echo "Final root directory contents:"
+        - ls -la ../
         - echo "=== POST BUILD PHASE END ==="
   artifacts:
     baseDirectory: .
