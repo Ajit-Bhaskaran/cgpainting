@@ -19,14 +19,13 @@ frontend:
         - pwd
         - echo "Current directory contents:"
         - ls -la
-        - echo "Out directory contents:"
-        - ls -la out/
-        - echo "Copying files from out/ to root directory:"
-        - cp -r out/* ..
-        - echo "Final directory contents:"
-        - ls -la ..
-        - echo "Verifying index.html exists:"
-        - ls -la ../index.html
+        - echo "Checking if out directory exists:"
+        - ls -la out/ || echo "out/ not found, checking parent directory:"
+        - ls -la ../out/ || echo "out/ not found in parent either"
+        - echo "Looking for build files in current directory:"
+        - find . -name "*.html" -type f
+        - echo "Looking for build files in parent directory:"
+        - find .. -name "*.html" -type f
         - echo "=== POST BUILD PHASE END ==="
   artifacts:
     baseDirectory: .
