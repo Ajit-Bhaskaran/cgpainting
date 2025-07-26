@@ -1,4 +1,3 @@
-
 'use client'
 
 import Image from 'next/image'
@@ -9,10 +8,6 @@ import { Phone, Menu, X } from 'lucide-react'
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
-  }
 
   const scrollToSection = (sectionId: string) => {
     // If we're on the quote page, navigate to home first
@@ -34,7 +29,7 @@ export default function Header() {
               <div className="flex items-center">
                 <a 
                   href="tel:0413847063" 
-                  className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
+                  className="flex items-center gap-2 bg-deep-blue hover:bg-blue-800 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200"
                 >
                   <Phone className="w-4 h-4" />
                   CALL NOW 0413 847 063
@@ -49,12 +44,12 @@ export default function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center hover:opacity-90 transition-opacity duration-200">
-              <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-deep-blue rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-xl">CG</span>
               </div>
               <div className="ml-3 sm:ml-4">
-                <h1 className="text-lg sm:text-2xl font-bold text-blue-600">CG Painting</h1>
-                <p className="text-xs sm:text-sm text-gray-600 font-medium">The Travelling Painter</p>
+                <h1 className="text-lg sm:text-2xl font-bold text-deep-blue">CG Painting</h1>
+                <p className="text-xs sm:text-sm text-gray-600 font-medium font-manrope">The Travelling Painter</p>
               </div>
             </Link>
 
@@ -62,25 +57,25 @@ export default function Header() {
             <nav className="hidden md:flex items-center space-x-8">
               <button 
                 onClick={() => scrollToSection('services')}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors cursor-pointer"
+                className="text-black hover:text-deep-blue font-medium transition-colors cursor-pointer"
               >
                 Services
               </button>
               <button 
                 onClick={() => scrollToSection('about')}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors cursor-pointer"
+                className="text-black hover:text-deep-blue font-medium transition-colors cursor-pointer"
               >
                 About
               </button>
               <button 
                 onClick={() => scrollToSection('testimonials')}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors cursor-pointer"
+                className="text-black hover:text-deep-blue font-medium transition-colors cursor-pointer"
               >
                 Reviews
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors cursor-pointer"
+                className="text-black hover:text-deep-blue font-medium transition-colors cursor-pointer"
               >
                 Contact
               </button>
@@ -89,8 +84,8 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
-                onClick={toggleMobileMenu}
-                className="p-2 rounded-lg text-gray-600 hover:text-blue-600 hover:bg-gray-100 transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 rounded-lg text-gray-600 hover:text-deep-blue hover:bg-gray-100 transition-colors"
                 aria-label="Toggle mobile menu"
               >
                 {isMobileMenuOpen ? (
@@ -104,7 +99,7 @@ export default function Header() {
             {/* Get Quote Button - Desktop */}
             <div className="hidden sm:block">
               <Link href="/quote">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 font-semibold">
+                <Button className="bg-deep-blue hover:bg-blue-800 text-white px-6 py-2 font-semibold">
                   Get Quote
                 </Button>
               </Link>
@@ -122,7 +117,7 @@ export default function Header() {
                     scrollToSection('services');
                     setIsMobileMenuOpen(false);
                   }}
-                  className="text-left text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
+                  className="text-left text-black hover:text-deep-blue font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
                 >
                   Services
                 </button>
@@ -131,7 +126,7 @@ export default function Header() {
                     scrollToSection('about');
                     setIsMobileMenuOpen(false);
                   }}
-                  className="text-left text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
+                  className="text-left text-black hover:text-deep-blue font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
                 >
                   About
                 </button>
@@ -140,7 +135,7 @@ export default function Header() {
                     scrollToSection('testimonials');
                     setIsMobileMenuOpen(false);
                   }}
-                  className="text-left text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
+                  className="text-left text-black hover:text-deep-blue font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
                 >
                   Reviews
                 </button>
@@ -149,7 +144,7 @@ export default function Header() {
                     scrollToSection('contact');
                     setIsMobileMenuOpen(false);
                   }}
-                  className="text-left text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
+                  className="text-left text-black hover:text-deep-blue font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
                 >
                   Contact
                 </button>
@@ -158,7 +153,7 @@ export default function Header() {
               {/* Mobile Get Quote Button */}
               <div className="pt-4 border-t border-gray-200">
                 <Link href="/quote" onClick={() => setIsMobileMenuOpen(false)}>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 font-semibold">
+                  <Button className="w-full bg-deep-blue hover:bg-blue-800 text-white px-6 py-3 font-semibold">
                     Get Free Quote
                   </Button>
                 </Link>

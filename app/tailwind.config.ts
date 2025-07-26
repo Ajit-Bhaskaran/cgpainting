@@ -9,17 +9,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
+      fontFamily: {
+        'inter': ['Inter', 'sans-serif'],
+        'manrope': ['Manrope', 'sans-serif'],
       },
       colors: {
+        'deep-blue': '#1e3a8a',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -61,6 +56,16 @@ const config: Config = {
           '5': 'hsl(var(--chart-5))',
         },
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
       keyframes: {
         'accordion-down': {
           from: {
@@ -78,10 +83,48 @@ const config: Config = {
             height: '0',
           },
         },
+        'fade-in-up': {
+          from: {
+            opacity: '0',
+            transform: 'translateY(30px)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translateY(0)',
+          },
+        },
+        'zoom-in': {
+          from: {
+            transform: 'scale(0.95)',
+          },
+          to: {
+            transform: 'scale(1)',
+          },
+        },
+        'lift': {
+          from: {
+            transform: 'translateY(0)',
+          },
+          to: {
+            transform: 'translateY(-8px)',
+          },
+        },
+        'counter': {
+          from: {
+            transform: 'scale(1)',
+          },
+          to: {
+            transform: 'scale(1.1)',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-in-up': 'fade-in-up 0.6s ease-out',
+        'zoom-in': 'zoom-in 0.3s ease-out',
+        'lift': 'lift 0.3s ease-out',
+        'counter': 'counter 0.5s ease-in-out infinite alternate',
       },
     },
   },

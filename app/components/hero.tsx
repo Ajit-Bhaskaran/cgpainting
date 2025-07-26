@@ -1,110 +1,140 @@
-
 'use client'
 
 import Image from 'next/image'
 import { Button } from './ui/button'
 import { Star, Phone, MapPin } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 export default function Hero() {
+  const [experienceCount, setExperienceCount] = useState(0)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      let count = 0
+      const interval = setInterval(() => {
+        count += 1
+        setExperienceCount(count)
+        if (count >= 10) {
+          clearInterval(interval)
+        }
+      }, 100)
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
-    <section className="relative bg-gradient-to-br from-blue-50 to-white py-16 lg:py-24 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                Professional
-                <span className="text-blue-600 block">Painting Services</span>
-              </h1>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Transform your space with CG Painting - The Travelling Painter. 
-                Quality workmanship, reliable service, and competitive prices across the region.
-              </p>
-            </div>
+    <section className="relative min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-deep-blue overflow-hidden">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://cdn.abacus.ai/images/d333196f-ff3d-4904-a5fb-bbb1c6acd2e5.png"
+          alt="Weathered to Beautiful - Professional Painting Transformation"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 gradient-overlay"></div>
+      </div>
 
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center gap-6">
-              <div className="flex items-center gap-2">
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
+      {/* Content */}
+      <div className="relative z-10 min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-8 animate-fade-in-up">
+              <div className="space-y-6">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
+                  Give New Life to
+                  <span className="block text-yellow-400">Your Old Home</span>
+                </h1>
+                <p className="text-xl sm:text-2xl text-gray-200 leading-relaxed font-manrope">
+                  Transform your space with CG Painting - The Travelling Painter. 
+                  Quality workmanship, reliable service, and competitive prices across the region.
+                </p>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="flex flex-wrap items-center gap-6">
+                <div className="flex items-center gap-2">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                  <span className="text-white font-medium text-lg">5.0 Rating</span>
                 </div>
-                <span className="text-gray-700 font-medium">5.0 Rating</span>
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-6 h-6 text-yellow-400" />
+                  <span className="text-white font-medium text-lg">Local & Reliable</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-blue-600" />
-                <span className="text-gray-700 font-medium">Local & Reliable</span>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a href="tel:0413847063">
+                  <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 text-lg font-bold w-full sm:w-auto hover-lift">
+                    <Phone className="w-5 h-5 mr-2" />
+                    Call Now: 0413 847 063
+                  </Button>
+                </a>
+                <a href="#contact">
+                  <Button variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg font-semibold w-full sm:w-auto hover-lift">
+                    Get Free Quote
+                  </Button>
+                </a>
+              </div>
+
+              {/* Key Benefits with Animation */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8">
+                <div className="text-center sm:text-left">
+                  <div className="text-4xl font-bold text-yellow-400 animate-counter">
+                    {experienceCount}+
+                  </div>
+                  <div className="text-gray-200 font-manrope">Years of On-the-Road Painting Experience</div>
+                </div>
+                <div className="text-center sm:text-left">
+                  <div className="text-4xl font-bold text-yellow-400">100%</div>
+                  <div className="text-gray-200 font-manrope">Satisfaction Guaranteed</div>
+                </div>
+                <div className="text-center sm:text-left">
+                  <div className="text-4xl font-bold text-yellow-400">Free</div>
+                  <div className="text-gray-200 font-manrope">Quotes & Estimates</div>
+                </div>
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a href="tel:0413847063">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold w-full sm:w-auto">
-                  <Phone className="w-5 h-5 mr-2" />
-                  Call Now: 0413 847 063
-                </Button>
-              </a>
-              <a href="#contact">
-                <Button variant="outline" size="lg" className="border-blue-600 text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold w-full sm:w-auto">
-                  Get Free Quote
-                </Button>
-              </a>
-            </div>
-
-            {/* Key Benefits */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8">
-              <div className="text-center sm:text-left">
-                <div className="text-2xl font-bold text-blue-600">10+</div>
-                <div className="text-gray-600">Years Experience</div>
+            {/* Right Content - Additional Visual Elements */}
+            <div className="relative lg:block hidden">
+              <div className="relative z-10 space-y-6">
+                {/* Floating Cards */}
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover-lift">
+                  <h3 className="text-xl font-bold text-white mb-2">Professional Results</h3>
+                  <p className="text-gray-200 font-manrope">Expert craftsmanship with attention to every detail</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover-lift ml-8">
+                  <h3 className="text-xl font-bold text-white mb-2">Quality Materials</h3>
+                  <p className="text-gray-200 font-manrope">Premium paints and tools for lasting results</p>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover-lift">
+                  <h3 className="text-xl font-bold text-white mb-2">Reliable Service</h3>
+                  <p className="text-gray-200 font-manrope">On-time completion with full insurance coverage</p>
+                </div>
               </div>
-              <div className="text-center sm:text-left">
-                <div className="text-2xl font-bold text-blue-600">100%</div>
-                <div className="text-gray-600">Satisfaction Guaranteed</div>
-              </div>
-              <div className="text-center sm:text-left">
-                <div className="text-2xl font-bold text-blue-600">Free</div>
-                <div className="text-gray-600">Quotes & Estimates</div>
-              </div>
+              
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-400/20 rounded-full opacity-60 animate-pulse"></div>
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-white/10 rounded-full opacity-40 animate-pulse"></div>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Right Content - Image */}
-          <div className="relative">
-            <div className="relative z-10">
-              <div className="relative aspect-[4/3] bg-gray-200 rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src="https://c8.alamy.com/comp/KH38X3/professional-painter-worker-is-painting-a-wall-KH38X3.jpg"
-                  alt="Professional painter at work"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  onError={(e) => {
-                    // Fallback to a placeholder if image fails to load
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    const parent = target.parentElement;
-                    if (parent) {
-                      parent.innerHTML = `
-                        <div class="flex items-center justify-center h-full bg-gradient-to-br from-blue-100 to-blue-200">
-                          <div class="text-center">
-                            <div class="text-4xl mb-2">🎨</div>
-                            <div class="text-gray-600 font-medium">Professional Painting</div>
-                          </div>
-                        </div>
-                      `;
-                    }
-                  }}
-                />
-              </div>
-            </div>
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-100 rounded-full opacity-60"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-yellow-100 rounded-full opacity-40"></div>
-          </div>
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>
