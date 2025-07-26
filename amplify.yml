@@ -5,11 +5,13 @@ frontend:
     preBuild:
       commands:
         - echo "=== PREBUILD PHASE START ==="
+        - cd app
         - npm install --legacy-peer-deps
         - echo "=== PREBUILD PHASE END ==="
     build:
       commands:
         - echo "=== BUILD PHASE START ==="
+        - cd app
         - npm run build
         - echo "=== BUILD PHASE END ==="
         - echo "=== POST BUILD PHASE START ==="
@@ -20,11 +22,11 @@ frontend:
         - echo "Out directory contents:"
         - ls -la out/
         - echo "Copying files from out/ to root directory:"
-        - cp -r out/* .
+        - cp -r out/* ..
         - echo "Final directory contents:"
-        - ls -la
+        - ls -la ..
         - echo "Verifying index.html exists:"
-        - ls -la index.html
+        - ls -la ../index.html
         - echo "=== POST BUILD PHASE END ==="
   artifacts:
     baseDirectory: .
@@ -32,5 +34,5 @@ frontend:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/*
-      - .next/cache/**/*
+      - app/node_modules/**/*
+      - app/.next/cache/**/*
