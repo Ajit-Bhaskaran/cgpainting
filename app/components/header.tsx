@@ -14,6 +14,16 @@ export default function Header() {
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }
 
+  const scrollToSection = (sectionId: string) => {
+    // If we're on the quote page, navigate to home first
+    if (window.location.pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+    } else {
+      // If we're on the home page, scroll to the section
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto">
@@ -50,25 +60,30 @@ export default function Header() {
 
             {/* Navigation - Desktop */}
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#services" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              <button 
+                onClick={() => scrollToSection('services')}
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors cursor-pointer"
+              >
                 Services
-              </a>
-              <a href="#about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              </button>
+              <button 
+                onClick={() => scrollToSection('about')}
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors cursor-pointer"
+              >
                 About
-              </a>
-              <a href="#testimonials" className="text-gray-700 hover:text-blue-600 font-medium transition-colors">
+              </button>
+              <button 
+                onClick={() => scrollToSection('testimonials')}
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors cursor-pointer"
+              >
                 Reviews
-              </a>
-              <a 
-                href="#contact" 
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }}
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors cursor-pointer"
               >
                 Contact
-              </a>
+              </button>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -102,26 +117,42 @@ export default function Header() {
           <div className="md:hidden border-t border-gray-200 bg-white/95 backdrop-blur-sm">
             <div className="px-4 py-4 space-y-4">
               <nav className="flex flex-col space-y-4">
-                <a href="#services" className="text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
-                  Services
-                </a>
-                <a href="#about" className="text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
-                  About
-                </a>
-                <a href="#testimonials" className="text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
-                  Reviews
-                </a>
-                <a 
-                  href="#contact" 
-                  className="text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                <button 
+                  onClick={() => {
+                    scrollToSection('services');
                     setIsMobileMenuOpen(false);
                   }}
+                  className="text-left text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
+                >
+                  Services
+                </button>
+                <button 
+                  onClick={() => {
+                    scrollToSection('about');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-left text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
+                >
+                  About
+                </button>
+                <button 
+                  onClick={() => {
+                    scrollToSection('testimonials');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-left text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
+                >
+                  Reviews
+                </button>
+                <button 
+                  onClick={() => {
+                    scrollToSection('contact');
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="text-left text-gray-700 hover:text-blue-600 font-medium transition-colors py-2 px-2 rounded-lg hover:bg-gray-100"
                 >
                   Contact
-                </a>
+                </button>
               </nav>
               
               {/* Mobile Get Quote Button */}
