@@ -8,6 +8,10 @@ yarn-error.log*
 .next/
 out/
 dist/
+_next/
+*.html
+!components/**/*.html
+!pages/**/*.html
 
 # Production builds
 /build
