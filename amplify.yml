@@ -5,7 +5,7 @@ frontend:
     preBuild:
       commands:
         - echo "=== PREBUILD PHASE START ==="
-        - npm ci --legacy-peer-deps
+        - npm install --legacy-peer-deps
         - echo "=== PREBUILD PHASE END ==="
     build:
       commands:
