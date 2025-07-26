@@ -81,6 +81,23 @@ export default function Hero() {
                   fill
                   className="object-cover"
                   priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  onError={(e) => {
+                    // Fallback to a placeholder if image fails to load
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = `
+                        <div class="flex items-center justify-center h-full bg-gradient-to-br from-blue-100 to-blue-200">
+                          <div class="text-center">
+                            <div class="text-4xl mb-2">🎨</div>
+                            <div class="text-gray-600 font-medium">Professional Painting</div>
+                          </div>
+                        </div>
+                      `;
+                    }
+                  }}
                 />
               </div>
             </div>

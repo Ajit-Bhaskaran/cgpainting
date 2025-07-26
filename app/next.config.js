@@ -8,7 +8,18 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  images: { unoptimized: true },
+  images: { 
+    unoptimized: true,
+    domains: ['c8.alamy.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'c8.alamy.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
